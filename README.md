@@ -5,7 +5,7 @@
 Here is my C++ source code for ESP32. With my code:
 
 * **Given output price tickers, we could check price in oled (.txt)**
-([A3C code](https://github.com/uvipen/Super-mario-bros-A3C-pytorch))
+([CPT code](https://github.com/Toandz1125/Crypto-price-tickers.git))
  
 `include<HTTPClient>`
 
