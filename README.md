@@ -32,4 +32,10 @@ Here is my C++ source code for ESP32. With my code:
   <i>Sample results</i>
 </p>
 -->
-
+|           |           |           |           |
+|-----------|:-----------:|:-----------:|:-----------:|
+|   BTC   |   ETH    |   BNB  |   DOGE  |
+|   BTC   |    ETH    |   BNB    | DOGE  |
+| BTC |  ETH   |   BNB  |    DOGE    |
+| BTC |   ETH    | BNB  |   DOGE    |
+|  BTC  |   ETH   | BNB |    DOGE   |
