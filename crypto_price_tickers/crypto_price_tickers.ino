@@ -15,7 +15,7 @@
 #define SCREEN_HEIGHT 64
 #define OLED_RESET     -1                                                     // Reset pin # (or -1 if sharing Arduino reset pin)
 #define SCREEN_ADDRESS 0x3C                                                   //I2C address for display
-#define blueled 17
+#define greenled 17
 #define redled 18
 // Rotary Encoder Inputs
 #define inputCLK 32
@@ -279,7 +279,7 @@ void setup()
   Serial.begin(9600);                                                       //Start the serial monitor
 
   pinMode(redled, OUTPUT);                                                     //Define the LED pin outputs
-  pinMode(blueled, OUTPUT);
+  pinMode(greenled, OUTPUT);
   // Set encoder pins as inputs  
   pinMode(inputCLK, INPUT_PULLUP);
   pinMode(inputDT, INPUT_PULLUP);
@@ -335,12 +335,12 @@ void loop()
   }
   //led
   if(data.USDChange >= 0 && data.ETHUSDChange >= 0 && data.BNBChange >= 0 && data.DOGEChange >= 0){
-    digitalWrite(blueled, HIGH);
+    digitalWrite(greenled, HIGH);
     digitalWrite(redled, LOW);
   }
   else{
     digitalWrite(redled, HIGH);
-    digitalWrite(blueled, LOW);
+    digitalWrite(greenled, LOW);
   }
   
   // If the previous and the current state of the inputCLK are different then a pulse has occured
