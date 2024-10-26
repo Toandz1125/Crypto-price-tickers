@@ -23,8 +23,8 @@
 #define inputSW 13
 Adafruit_SSD1306 display (SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);    //Create the display object
 
-const char* ssid = "hihihuhuhaha";                                               //Set your WiFi network name and password
-const char* password = "hihihahahuhu";
+const char* ssid = "WiFi Name";                                               //Set your WiFi network name and password
+const char* password = "Password";
 
 const int httpsPort = 443;
 const String url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=USD&include_24hr_change=true";                                                    //Bitcoin price API powered by CoinGecko
