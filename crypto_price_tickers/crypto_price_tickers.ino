@@ -5,26 +5,43 @@
 #include <NTPClient.h> 
 #include <WiFiUdp.h>
 #include <ArduinoJson.h>
+#include <String>
+#include <ESP32Encoder.h>
+#include <driver/rtc_io.h>
+#include "esp_sleep.h"
+#include "esp_system.h"
 
 #define SCREEN_WIDTH 128                                                      //Define the OLED display width and height
 #define SCREEN_HEIGHT 64
 #define OLED_RESET     -1                                                     // Reset pin # (or -1 if sharing Arduino reset pin)
 #define SCREEN_ADDRESS 0x3C                                                   //I2C address for display
-#define upLED 13
-#define downLED 12
+#define blueled 17
+#define redled 18
+// Rotary Encoder Inputs
+#define inputCLK 32
+#define inputDT 33
+#define inputSW 13
 Adafruit_SSD1306 display (SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);    //Create the display object
 
-const char* ssid = "WiFi Name";                                               //Set your WiFi network name and password
-const char* password = "Password";
+const char* ssid = "hihihuhuhaha";                                               //Set your WiFi network name and password
+const char* password = "hihihahahuhu";
 
 const int httpsPort = 443;
 const String url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=USD&include_24hr_change=true";                                                    //Bitcoin price API powered by CoinGecko
 const String url_1 = "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=USD&include_24hr_change=true";
 const String url_2 = "https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=USD&include_24hr_change=true";
 const String url_3 = "https://api.coingecko.com/api/v3/simple/price?ids=dogecoin&vs_currencies=USD&include_24hr_change=true";
+int status=0;
+int counter = 0;
+int currentStateCLK;
+int previousStateCLK;
+unsigned long lastButtonPress = 0;
+const unsigned long sleepInterval = 60000; // 1 phút
+String encdir ="";
 
 WiFiClient client;                                                            //Create a new WiFi client
 HTTPClient http;
+ESP32Encoder encoder;
 
 String formattedDate;                                                         //Create variables to store the date and time
 String dayStamp;
@@ -98,12 +115,175 @@ const unsigned char bitcoinLogo [] PROGMEM =                                  //
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
+unsigned long previousMillis = 0; // Lưu thời gian lần cuối thực hiện request
+const long interval = 300000; // 5 phút (300000 milliseconds)
+
+struct CryptoData{
+  double BTCUSDPrice;
+  double USDChange;
+  double ETHUSDPrice;
+  double ETHUSDChange;
+  double BNBPrice;
+  double BNBChange;
+  double DOGEPrice;
+  double DOGEChange;
+};
+
+CryptoData data;
+
+void request(CryptoData &data){
+
+  //bitcoin
+
+  Serial.print("Connecting to ");                                                       //Display url on Serial monitor for debugging
+  Serial.println(url);
+
+  http.begin(url);
+  int httpCode = http.GET();                                                            //Get crypto price from API
+  StaticJsonDocument<256> doc;
+  DeserializationError error = deserializeJson(doc, http.getString());
+
+  if (error)                                                                            //Display error message if unsuccessful
+  {
+    Serial.print(F("deserializeJson Failed"));
+    Serial.println(error.f_str());
+    delay(2500);
+    return;
+  }
+
+  Serial.print("HTTP Status Code: ");
+  Serial.println(httpCode);
+
+  data.BTCUSDPrice = doc["bitcoin"]["usd"].as<double>();                              //Store crypto price and update date in local variables
+  data.USDChange = doc["bitcoin"]["usd_24h_change"].as<double>();
+
+  http.end();
+
+  Serial.print("BTCUSD Price: ");                                                       //Display current price on serial monitor
+  Serial.println(data.BTCUSDPrice);
+
+  Serial.print("Yesterday's Price: ");                                                  //Display yesterday's price on serial monitor
+  Serial.println(data.USDChange);
+
+  Serial.print("Percent Change: ");                                                     //Display the percentage change on the serial monitor
+  Serial.println(data.USDChange);
+
+  //ethereum
+
+ Serial.print("Connecting to ");                                                       //Display url on Serial monitor for debugging
+  Serial.println(url_1);
+
+  http.begin(url_1);
+  int httpCode1 = http.GET();                                                            //Get crypto price from API
+  StaticJsonDocument<256> doc1;
+  DeserializationError error1 = deserializeJson(doc1, http.getString());
+
+  if (error1)                                                                            //Display error message if unsuccessful
+  {
+    Serial.print(F("deserializeJson Failed"));
+    Serial.println(error1.f_str());
+    delay(2500);
+    return;
+  }
+
+  Serial.print("HTTP Status Code: ");
+  Serial.println(httpCode1);
+
+  data.ETHUSDPrice = doc1["ethereum"]["usd"].as<double>();                              //Store crypto price and update date in local variables
+  data.ETHUSDChange = doc1["ethereum"]["usd_24h_change"].as<double>();
+
+  http.end();
+
+  Serial.print("ETHUSD Price: ");                                                       //Display current price on serial monitor
+  Serial.println(data.ETHUSDPrice);
+
+  Serial.print("Yesterday's Price: ");                                                  //Display yesterday's price on serial monitor
+  Serial.println(data.ETHUSDChange);
+ 
+  Serial.print("Percent Change: ");                                                     //Display the percentage change on the serial monitor
+  Serial.println(data.ETHUSDChange);
+
+  //binancecoin
+
+ Serial.print("Connecting to ");                                                       //Display url on Serial monitor for debugging
+  Serial.println(url_2);
+
+  http.begin(url_2);
+  int httpCode2 = http.GET();                                                            //Get crypto price from API
+  StaticJsonDocument<256> doc2;
+  DeserializationError error2 = deserializeJson(doc2, http.getString());
+
+  if (error2)                                                                            //Display error message if unsuccessful
+  {
+    Serial.print(F("deserializeJson Failed"));
+    Serial.println(error2.f_str());
+    delay(2500);
+    return;
+  }
+
+  Serial.print("HTTP Status Code: ");
+  Serial.println(httpCode2);
+
+  data.BNBPrice = doc2["binancecoin"]["usd"].as<double>();                              //Store crypto price and update date in local variables
+  data.BNBChange = doc2["binancecoin"]["usd_24h_change"].as<double>();
+
+  http.end();
+
+  Serial.print("BNBUSD Price: ");                                                       //Display current price on serial monitor
+  Serial.println(data.BNBPrice);
+
+  Serial.print("Yesterday's Price: ");                                                  //Display yesterday's price on serial monitor
+  Serial.println(data.BNBChange);
+ 
+  Serial.print("Percent Change: ");                                                     //Display the percentage change on the serial monitor
+  Serial.println(data.BNBChange);
+
+  //Dogecoin
+
+  Serial.print("Connecting to ");                                                       //Display url on Serial monitor for debugging
+  Serial.println(url_3);
+
+  http.begin(url_3);
+  int httpCode3 = http.GET();                                                            //Get crypto price from API
+  StaticJsonDocument<256> doc3;
+  DeserializationError error3 = deserializeJson(doc3, http.getString());
+
+  if (error3)                                                                            //Display error message if unsuccessful
+  {
+    Serial.print(F("deserializeJson Failed"));
+    Serial.println(error3.f_str());
+    delay(2500);
+    return;
+  }
+
+  Serial.print("HTTP Status Code: ");
+  Serial.println(httpCode3);
+
+  data.DOGEPrice = doc3["dogecoin"]["usd"].as<double>();                              //Store crypto price and update date in local variables
+  data.DOGEChange = doc3["dogecoin"]["usd_24h_change"].as<double>();
+
+  http.end();
+
+  Serial.print("BTCUSD Price: ");                                                       //Display current price on serial monitor
+  Serial.println(data.DOGEPrice);
+
+  Serial.print("Yesterday's Price: ");                                                  //Display yesterday's price on serial monitor
+  Serial.println(data.DOGEChange);
+
+  Serial.print("Percent Change: ");                                                     //Display the percentage change on the serial monitor
+  Serial.println(data.DOGEChange);
+
+}
 void setup() 
 {
   Serial.begin(9600);                                                       //Start the serial monitor
-  
-  pinMode(upLED, OUTPUT);                                                     //Define the LED pin outputs
-  pinMode(downLED, OUTPUT);
+
+  pinMode(redled, OUTPUT);                                                     //Define the LED pin outputs
+  pinMode(blueled, OUTPUT);
+  // Set encoder pins as inputs  
+  pinMode(inputCLK, INPUT_PULLUP);
+  pinMode(inputDT, INPUT_PULLUP);
+  pinMode(inputSW, INPUT_PULLUP);
 
   if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS))                   //Connect to the display
   {
@@ -139,261 +319,136 @@ display.setTextSize(1);                                                     //Se
   delay(1500);
   display.clearDisplay();
   display.display();
-}
 
+  request(data);
+  previousStateCLK = digitalRead(inputCLK);
+
+}
 void loop() 
 {
-  Serial.print("Connecting to ");                                                       //Display url on Serial monitor for debugging
-  Serial.println(url);
+  currentStateCLK = digitalRead(inputCLK);
+  unsigned long currentMillis = millis();
 
-  http.begin(url);
-  int httpCode = http.GET();                                                            //Get crypto price from API
-  StaticJsonDocument<256> doc;
-  DeserializationError error = deserializeJson(doc, http.getString());
-
-  if (error)                                                                            //Display error message if unsuccessful
-  {
-    Serial.print(F("deserializeJson Failed"));
-    Serial.println(error.f_str());
-    delay(2500);
-    return;
+  if (currentMillis - previousMillis >= interval) {
+    previousMillis = currentMillis;
+    request(data);
   }
-
-  Serial.print("HTTP Status Code: ");
-  Serial.println(httpCode);
-
-  String BTCUSDPrice = doc["bitcoin"]["usd"].as<String>();                              //Store crypto price and update date in local variables
-  float USD24hrFloat = doc["bitcoin"]["usd_24h_change"].as<float>();
-  String USDChange = String(USD24hrFloat, 3);
-  http.end();
-
-  Serial.print("BTCUSD Price: ");                                                       //Display current price on serial monitor
-  Serial.println(BTCUSDPrice.toDouble());
-
-  Serial.print("Yesterday's Price: ");                                                  //Display yesterday's price on serial monitor
-  Serial.println(USDChange);
+  //led
+  if(data.USDChange >= 0 && data.ETHUSDChange >= 0 && data.BNBChange >= 0 && data.DOGEChange >= 0){
+    digitalWrite(blueled, HIGH);
+    digitalWrite(redled, LOW);
+  }
+  else{
+    digitalWrite(redled, HIGH);
+    digitalWrite(blueled, LOW);
+  }
   
-  bool isUp = USD24hrFloat > 0;                                                         //Check whether price has increased or decreased
-  double percentChange;
-  String dayChangeString = "24hr. Change: "; 
-  if (isUp)                                                                             //If price has increased from yesterday
-  {
-    digitalWrite(upLED, HIGH);
-    digitalWrite(downLED, LOW);
-  } 
-  else                                                                                  //If price has decreased from yesterday
-  {
-    digitalWrite(downLED, HIGH);
-    digitalWrite(upLED, LOW);
+  // If the previous and the current state of the inputCLK are different then a pulse has occured
+  if (currentStateCLK != previousStateCLK){ 
+    lastButtonPress = currentMillis;
+    // If the inputDT state is different than the inputCLK state then 
+    // the encoder is rotating counterclockwise
+    if (digitalRead(inputDT) != currentStateCLK) { 
+      counter --;
+      if (counter < 0){
+        counter = 3;
+      }
+      encdir ="CCW";  
+    } else {
+      // Encoder is rotating clockwise
+      counter ++;
+      if(counter > 3){
+        counter = 0;
+      }
+      encdir ="CW";
+    }
+    Serial.print("Direction: ");
+    Serial.print(encdir);
+    Serial.print(" -- Value: ");
+    Serial.println(counter);
+    delay(100);
   }
-
-  Serial.print("Percent Change: ");                                                     //Display the percentage change on the serial monitor
-  Serial.println(USDChange);
-
+  // Update previousStateCLK with the current state
+  previousStateCLK = currentStateCLK;
+  if (counter == 0){
+    bitcoin();
+  }
+  if (counter == 1){
+    ethereum();
+  }
+  if (counter == 2){
+    binance();
+  }
+  if (counter == 3){
+    dogecoin();
+  }
+  // Kiểm tra thời gian không hoạt động và đưa vào chế độ sleep
+  if (currentMillis - lastButtonPress >= sleepInterval) {
+    display.ssd1306_command(SSD1306_DISPLAYOFF);
+    esp_sleep_enable_ext0_wakeup(GPIO_NUM_13, 0);
+    esp_deep_sleep_start();
+  }
+}
+void bitcoin(){
+  String dayChangeString = "24hr. Change: " + String(data.USDChange, 3) + "%"; 
   display.clearDisplay();                                                               //Clear the OLED display
   display.setTextSize(1);
 printCenter("BTC/USD", 0, 0);                                                         //Display the comparison header
 
   display.setTextSize(2);
-  printCenter("$" + BTCUSDPrice, 0, 25);                                                //Display the current price
+  printCenter("$" + String(data.BTCUSDPrice, 2), 0, 25);                                                //Display the current price
                                            
   display.setTextSize(1);                                                               //Display the change percentage
-  dayChangeString = dayChangeString + USDChange + "%";
   printCenter(dayChangeString, 0, 55);
   display.display();                                                                    //Execute the new display
 
-  http.end();                                                                           //End the WiFi connection
-  delay(20000);
-  display.clearDisplay();
-  
-  Serial.print("Connecting to ");                                                       //Display url on Serial monitor for debugging
-  Serial.println(url_1);
+}
 
-  http.begin(url_1);
-  int httpCode1 = http.GET();                                                            //Get crypto price from API
-  StaticJsonDocument<256> doc1;
-  DeserializationError error1 = deserializeJson(doc1, http.getString());
-
-  if (error1)                                                                            //Display error message if unsuccessful
-  {
-    Serial.print(F("deserializeJson Failed"));
-    Serial.println(error1.f_str());
-    delay(2500);
-    return;
-  }
-
-  Serial.print("HTTP Status Code: ");
-  Serial.println(httpCode1);
-
-  String ETHUSDPrice = doc1["ethereum"]["usd"].as<String>();                              //Store crypto price and update date in local variables
-  float USD24hrFloat1 = doc1["ethereum"]["usd_24h_change"].as<float>();
-  String USDChange1 = String(USD24hrFloat1, 3);
-  http.end();
-
-  Serial.print("ETHUSD Price: ");                                                       //Display current price on serial monitor
-  Serial.println(ETHUSDPrice.toDouble());
-
-  Serial.print("Yesterday's Price: ");                                                  //Display yesterday's price on serial monitor
-  Serial.println(USDChange1);
-  
-  bool isUp1 = USD24hrFloat1 > 0;                                                         //Check whether price has increased or decreased
-  double percentChange1;
-  String dayChangeString1 = "24hr. Change: "; 
-  if (isUp1)                                                                             //If price has increased from yesterday
-  {
-    digitalWrite(upLED, HIGH);
-    digitalWrite(downLED, LOW);
-  } 
-  else                                                                                  //If price has decreased from yesterday
-  {
-    digitalWrite(downLED, HIGH);
-    digitalWrite(upLED, LOW);
-  }
-
-  Serial.print("Percent Change: ");                                                     //Display the percentage change on the serial monitor
-  Serial.println(USDChange1);
+void ethereum(){
+  String dayChangeString1 = "24hr. Change: " + String(data.ETHUSDChange, 3)  + "%"; 
 display.clearDisplay();                                                               //Clear the OLED display
   display.setTextSize(1);
   printCenter("ETH/USD", 0, 0);                                                         //Display the comparison header
 
   display.setTextSize(2);
-  printCenter("$" + ETHUSDPrice, 0, 25);                                                //Display the current price
+  printCenter("$" + String(data.ETHUSDPrice, 2), 0, 25);                                                //Display the current price
                                            
   display.setTextSize(1);                                                               //Display the change percentage
-  dayChangeString1 = dayChangeString1 + USDChange1 + "%";
   printCenter(dayChangeString1, 0, 55);
   display.display();                                                                    //Execute the new display
 
-  http.end();                                                                           //End the WiFi connection
-  delay(20000);
-  display.clearDisplay(); 
+}
 
-
-  Serial.print("Connecting to ");                                                       //Display url on Serial monitor for debugging
-  Serial.println(url_2);
-
-  http.begin(url_2);
-  int httpCode2 = http.GET();                                                            //Get crypto price from API
-  StaticJsonDocument<256> doc2;
-  DeserializationError error2 = deserializeJson(doc2, http.getString());
-
-  if (error2)                                                                            //Display error message if unsuccessful
-  {
-    Serial.print(F("deserializeJson Failed"));
-    Serial.println(error2.f_str());
-    delay(2500);
-    return;
-  }
-
-  Serial.print("HTTP Status Code: ");
-  Serial.println(httpCode2);
-
-  String BNBUSDPrice = doc2["binancecoin"]["usd"].as<String>();                              //Store crypto price and update date in local variables
-  float USD24hrFloat2 = doc2["binancecoin"]["usd_24h_change"].as<float>();
-  String USDChange2 = String(USD24hrFloat2, 3);
-  http.end();
-
-  Serial.print("BNBUSD Price: ");                                                       //Display current price on serial monitor
-  Serial.println(BNBUSDPrice.toDouble());
-
-  Serial.print("Yesterday's Price: ");                                                  //Display yesterday's price on serial monitor
-  Serial.println(USDChange2);
-  
-  bool isUp2 = USD24hrFloat2 > 0;                                                         //Check whether price has increased or decreased
-  double percentChange2;
-  String dayChangeString2 = "24hr. Change: "; 
-  if (isUp2)                                                                             //If price has increased from yesterday
-  {
-    digitalWrite(upLED, HIGH);
-    digitalWrite(downLED, LOW);
-  } 
-  else                                                                                  //If price has decreased from yesterday
-  {
-    digitalWrite(downLED, HIGH);
-    digitalWrite(upLED, LOW);
-  }
-
-  Serial.print("Percent Change: ");                                                     //Display the percentage change on the serial monitor
-  Serial.println(USDChange2);
+void binance(){
+  String dayChangeString2 = "24hr. Change: " + String(data.BNBChange, 3)  + "%"; 
 display.clearDisplay();                                                               //Clear the OLED display
   display.setTextSize(1);
   printCenter("BNB/USD", 0, 0);                                                         //Display the comparison header
 
   display.setTextSize(2);
-  printCenter("$" + BNBUSDPrice, 0, 25);                                                //Display the current price
+  printCenter("$" + String(data.BNBPrice, 2), 0, 25);                                                //Display the current price
                                            
   display.setTextSize(1);                                                               //Display the change percentage
-  dayChangeString2 = dayChangeString2 + USDChange2 + "%";
   printCenter(dayChangeString2, 0, 55);
   display.display();                                                                    //Execute the new display
 
-  http.end();                                                                           //End the WiFi connection
-  delay(20000);
-  display.clearDisplay();
+}
 
-
-  Serial.print("Connecting to ");                                                       //Display url on Serial monitor for debugging
-  Serial.println(url_3);
-
-  http.begin(url_3);
-  int httpCode3 = http.GET();                                                            //Get crypto price from API
-  StaticJsonDocument<256> doc3;
-  DeserializationError error3 = deserializeJson(doc3, http.getString());
-
-  if (error3)                                                                            //Display error message if unsuccessful
-  {
-    Serial.print(F("deserializeJson Failed"));
-    Serial.println(error3.f_str());
-    delay(2500);
-    return;
-  }
-
-  Serial.print("HTTP Status Code: ");
-  Serial.println(httpCode3);
-
-  String DOGEUSDPrice = doc3["dogecoin"]["usd"].as<String>();                              //Store crypto price and update date in local variables
-  float USD24hrFloat3 = doc3["dogecoin"]["usd_24h_change"].as<float>();
-  String USDChange3 = String(USD24hrFloat3, 3);
-  http.end();
-
-  Serial.print("DOGEUSD Price: ");                                                       //Display current price on serial monitor
-  Serial.println(DOGEUSDPrice.toDouble());
-
-  Serial.print("Yesterday's Price: ");                                                  //Display yesterday's price on serial monitor
-  Serial.println(USDChange3);
-  
-  bool isUp3 = USD24hrFloat3 > 0;                                                         //Check whether price has increased or decreased
-  double percentChange3;
-  String dayChangeString3 = "24hr. Change: "; 
-  if (isUp3)                                                                             //If price has increased from yesterday
-  {
-    digitalWrite(upLED, HIGH);
-    digitalWrite(downLED, LOW);
-  } 
-  else                                                                                  //If price has decreased from yesterday
-  {
-    digitalWrite(downLED, HIGH);
-    digitalWrite(upLED, LOW);
-  }
-
-  Serial.print("Percent Change: ");                                                     //Display the percentage change on the serial monitor
-  Serial.println(USDChange3);
-display.clearDisplay();                                                               //Clear the OLED display
+void dogecoin(){
+  String dayChangeString = "24hr. Change: " + String(data.DOGEChange, 3) + "%"; 
+  display.clearDisplay();                                                               //Clear the OLED display
   display.setTextSize(1);
-  printCenter("DOGE/USD", 0, 0);                                                         //Display the comparison header
+printCenter("DOGE/USD", 0, 0);                                                         //Display the comparison header
 
   display.setTextSize(2);
-  printCenter("$" + DOGEUSDPrice, 0, 25);                                                //Display the current price
+  printCenter("$" + String(data.DOGEPrice, 2), 0, 25);                                                //Display the current price
                                            
   display.setTextSize(1);                                                               //Display the change percentage
-  dayChangeString3 = dayChangeString3 + USDChange3 + "%";
-  printCenter(dayChangeString3, 0, 55);
+  printCenter(dayChangeString, 0, 55);
   display.display();                                                                    //Execute the new display
 
-  http.end();                                                                           //End the WiFi connection
-  delay(20000);
-  display.clearDisplay(); 
 }
+
 void printCenter(const String buf, int x, int y)                          //Function to centre the current price in the display width
 {
   int16_t x1, y1;
