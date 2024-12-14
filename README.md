@@ -40,7 +40,7 @@ Here is my source code for this project. With my code:
 
  - STEP 4: Mở device manager và kiểm tra xem port ở vị trí nào (bằng cách ấn chuột phải vào nút WINDOWN sau đó chọn divice manager).
  
- - STEP 4: Sau đó tải đoạn code của tôi về, mở file crypto_price_tickers.ino bằng Arduino IDE sau đó ấn vào tool chọn board esp32 (theo đúng loại esp32 bạn có) rồi chọn port chính là số port vừa tìm thấy tại device manager bước trên
- - STEP 5: Ấn upload để tải lên đoạn code => như vậy là đã hoàn thành chương trình đã có thể chạy
+ - STEP 5: Sau đó tải đoạn code của tôi về, mở file crypto_price_tickers.ino bằng Arduino IDE sau đó ấn vào tool chọn board esp32 (theo đúng loại esp32 bạn có) rồi chọn port chính là số port vừa tìm thấy tại device manager bước trên
+ - STEP 6: Ấn upload để tải lên đoạn code => như vậy là đã hoàn thành chương trình đã có thể chạy
 # Support You
 Whatever you need; questions answered, requests, bugs; make an Issue. I'll get to them as soon as I can.
