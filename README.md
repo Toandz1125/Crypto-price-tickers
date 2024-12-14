@@ -21,13 +21,13 @@ Bitcoin Ticker là mã Arduino cho bo mạch ESP32. Mã này hiển thị giá B
 ![image](https://github.com/user-attachments/assets/4b20a8dd-c46c-48e2-bfa2-429b2fef8cb2)
 
 ## Library:
- - Adafruit_SSD1306 (For the OLED Display)
- - WiFi (For ESP32 onboard WiFi)
+ - Adafruit_SSD1306 (Để hiển thị OLED)
+ - WiFi (Cho WiFi trên bo mạch ESP32)
  - Wire
- - HTTPClient (To make requests to Coingecko)
- - NTPClinet (Used to get the time for "Last Updated")
- - WiFiUdp (Used to get the time for "Last Updated")
- - ArduinoJson (Used to process JSON data retreived from CoinMarketCap)
+ - HTTPClient (Để requests đến Coingecko)
+ - NTPClinet (Được sử dụng để có được thời gian cho "Last Updated")
+ - WiFiUdp (Được sử dụng để có được thời gian cho "Last Updated")
+ - ArduinoJson (Được sử dụng để xử lý dữ liệu JSON được truy xuất từ ​​Coingecko)
  - Wifi Manager for Esp32
 
 # Usage:
@@ -44,7 +44,16 @@ Bitcoin Ticker là mã Arduino cho bo mạch ESP32. Mã này hiển thị giá B
 ![image](https://github.com/user-attachments/assets/f61d31a9-ab18-4601-a67f-a017a1f02ea9)
 
  - Bước 6: Mở device manager và kiểm tra xem port ở vị trí nào (bằng cách ấn chuột phải vào nút WINDOWN sau đó chọn divice manager).
- 
+   
+![image](https://github.com/user-attachments/assets/16bb1a21-76b5-4b7a-808a-fdfcf717da3f)
+
+* Nếu máy của bạn ko có phần này. Đừng lo, hãy làm theo các bước sau:
+  Đầu tiên ấn chọn Action phía bên trên, chọn Add legacy hardware, sau đó chọn
+![z6086642447049_2d7148e1e05d665a40cd6d20a52d58f6](https://github.com/user-attachments/assets/ce68aace-ab84-4f14-b087-f42900f6e412)
+
+ Tiếp theo kéo xuống dưới sẽ có phần port sau đó ấn chọn vào đó rồi ấn next => đã xuất hiện phần port (sau bước này bạn có thể khởi động lại máy và rút cáp sạc ra cắm lại esp32 để nó có thể nhận drive)
+![z6086645402105_d22b40e974d916db1d19b3a85f11c8ab](https://github.com/user-attachments/assets/1905a51c-357e-497d-a632-64a1269b64d2)
+
  - Bước 7: Sau đó tải đoạn code của tôi về, mở file crypto_price_tickers.ino bằng Arduino IDE sau đó ấn vào tool chọn board esp32 (theo đúng loại esp32 bạn có) rồi chọn port chính là số port vừa tìm thấy tại device manager bước trên
 ![image](https://github.com/user-attachments/assets/8a6d7973-965d-4585-bedd-feac6ca38df8)
 
