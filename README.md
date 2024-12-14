@@ -1,10 +1,9 @@
 # CRYPTO CURRENCY TICKERS
-
 ## Introduction
 
-Here is my source code for this project. With my code:
+Đây là mã nguồn của tôi cho dự án này. Với mã của tôi:
 <p>
-Bitcoin Ticker is Arduino code for ESP32 boards. This ticker displays the price of Bitcoin/USD, Ethereum/USD,... and idicates whether the crypto currency went up or down. The price data comes from the Coingecko API.
+Bitcoin Ticker là mã Arduino cho bo mạch ESP32. Mã này hiển thị giá Bitcoin/USD, Ethereum/USD,vv... và cho biết loại tiền điện tử này tăng hay giảm. Dữ liệu giá đến từ API Coingecko.
 
 # Requirements
 ## Hardware:
@@ -32,24 +31,38 @@ Bitcoin Ticker is Arduino code for ESP32 boards. This ticker displays the price 
  - Wifi Manager for Esp32
 
 # Usage:
- - STEP 1: Lắp các thiết bị phần cứng theo sơ đồ diagram ở bên trên
- - STEP 1: Kết nối ESP32 vào máy tính của bạn qua 1 chiếc cáp sạc
- - STEP 2: Tải và cài đặt drive tương ứng với ESP32 của bạn (có thể là CP210x, CH340,...) trên trình duyệt
- - STEP 3: Cài đặt Arduino IDE from website https://www.arduino.cc/en/software, sau đó vào file chọn preferences rồi nhập vào đường dẫn này https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json (phải làm bước này bên dưới tìm được Board để cài đặt)
+ - Bước 1: Lắp các thiết bị phần cứng theo sơ đồ diagram ở bên trên
+ - Bước 2: Kết nối ESP32 vào máy tính của bạn qua 1 chiếc cáp sạc
+ - Bước 3: Tải và cài đặt drive tương ứng với ESP32 của bạn (có thể là CP210x, CH340,...) trên trình duyệt
+ - Bước 3: Cài đặt Arduino IDE from website https://www.arduino.cc/en/software, sau đó vào file chọn preferences rồi nhập vào đường dẫn này https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json (phải làm bước này bên dưới tìm được Board để cài đặt)
    
  ![image](https://github.com/user-attachments/assets/a852d64a-83bf-484d-bc8f-e6a152f6a74f)
 
- - STEP 4: Sau đó cài đặt Board ESP32 từ BOARD MANAGER. Xong rồi cài thêm các thư viện được liệt kê bên trên từ LIBRARY MANAGER
+ - Bước 5: Sau đó cài đặt Board ESP32 từ BOARD MANAGER. Xong rồi cài thêm các thư viện được liệt kê bên trên từ LIBRARY MANAGER
    
 ![image](https://github.com/user-attachments/assets/15a506d2-a7bf-41f9-990d-bb82d9b5d6ce)
 ![image](https://github.com/user-attachments/assets/f61d31a9-ab18-4601-a67f-a017a1f02ea9)
 
- - STEP 4: Mở device manager và kiểm tra xem port ở vị trí nào (bằng cách ấn chuột phải vào nút WINDOWN sau đó chọn divice manager).
+ - Bước 6: Mở device manager và kiểm tra xem port ở vị trí nào (bằng cách ấn chuột phải vào nút WINDOWN sau đó chọn divice manager).
  
- - STEP 5: Sau đó tải đoạn code của tôi về, mở file crypto_price_tickers.ino bằng Arduino IDE sau đó ấn vào tool chọn board esp32 (theo đúng loại esp32 bạn có) rồi chọn port chính là số port vừa tìm thấy tại device manager bước trên
+ - Bước 7: Sau đó tải đoạn code của tôi về, mở file crypto_price_tickers.ino bằng Arduino IDE sau đó ấn vào tool chọn board esp32 (theo đúng loại esp32 bạn có) rồi chọn port chính là số port vừa tìm thấy tại device manager bước trên
 ![image](https://github.com/user-attachments/assets/8a6d7973-965d-4585-bedd-feac6ca38df8)
 
- - STEP 6: Ấn upload để tải lên đoạn code => như vậy là đã hoàn thành chương trình đã có thể chạy
+ - Bước 8: Ấn upload để tải lên đoạn code => như vậy là đã hoàn thành chương trình đã có thể chạy
 # Support You
-Whatever you need; questions answered, requests, bugs; make an Issue. I'll get to them as soon as I can.
+Bất cứ điều gì bạn cần; câu hỏi được trả lời, yêu cầu, lỗi; gặp phải một vấn đề. Tôi sẽ hỗ trợ ngay khi có thể.
+ ![image](https://github.com/user-attachments/assets/a852d64a-83bf-484d-bc8f-e6a152f6a74f)
 
+ - Bước 5: Sau đó cài đặt Board ESP32 từ BOARD MANAGER. Xong rồi cài thêm các thư viện được liệt kê bên trên từ LIBRARY MANAGER
+   
+![image](https://github.com/user-attachments/assets/15a506d2-a7bf-41f9-990d-bb82d9b5d6ce)
+![image](https://github.com/user-attachments/assets/f61d31a9-ab18-4601-a67f-a017a1f02ea9)
+
+ - Bước 6: Mở device manager và kiểm tra xem port ở vị trí nào (bằng cách ấn chuột phải vào nút WINDOWN sau đó chọn divice manager).
+ 
+ - Bước 7: Sau đó tải đoạn code của tôi về, mở file crypto_price_tickers.ino bằng Arduino IDE sau đó ấn vào tool chọn board esp32 (theo đúng loại esp32 bạn có) rồi chọn port chính là số port vừa tìm thấy tại device manager bước trên
+![image](https://github.com/user-attachments/assets/8a6d7973-965d-4585-bedd-feac6ca38df8)
+
+ - Bước 8: Ấn upload để tải lên đoạn code => như vậy là đã hoàn thành chương trình đã có thể chạy
+# Support You
+Bất cứ điều gì bạn cần; câu hỏi được trả lời, yêu cầu, lỗi; gặp phải một vấn đề. Tôi sẽ hỗ trợ ngay khi có thể.
