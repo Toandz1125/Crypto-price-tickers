@@ -34,8 +34,12 @@ Bitcoin Ticker is Arduino code for ESP32 boards. This ticker displays the price 
 # Usage:
  - STEP 1: Lắp các thiết bị phần cứng theo sơ đồ diagram ở bên trên
  - STEP 1: Kết nối ESP32 vào máy tính của bạn qua 1 chiếc cáp sạc
- - STEP 2: Cài đặt drive tương ứng với ESP32 của bạn (có thể là CP210x, CH340,...)
- - STEP 3: Cài đặt Arduino IDE from website https://www.arduino.cc/en/software, sau đó cài đặt Board ESP32 từ BOARD MANAGER. Xong rồi cài thêm các thư viện được liệt kê bên trên từ LIBRARY MANAGER
+ - STEP 2: Tải và cài đặt drive tương ứng với ESP32 của bạn (có thể là CP210x, CH340,...) trên trình duyệt
+ - STEP 3: Cài đặt Arduino IDE from website https://www.arduino.cc/en/software, sau đó vào file chọn preferences rồi nhập vào đường dẫn này https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json (phải làm bước này bên dưới tìm được Board để cài đặt)
+   
+ ![image](https://github.com/user-attachments/assets/a852d64a-83bf-484d-bc8f-e6a152f6a74f)
+
+ - STEP 4: Sau đó cài đặt Board ESP32 từ BOARD MANAGER. Xong rồi cài thêm các thư viện được liệt kê bên trên từ LIBRARY MANAGER
    
 ![image](https://github.com/user-attachments/assets/15a506d2-a7bf-41f9-990d-bb82d9b5d6ce)
 ![image](https://github.com/user-attachments/assets/f61d31a9-ab18-4601-a67f-a017a1f02ea9)
@@ -43,6 +47,8 @@ Bitcoin Ticker is Arduino code for ESP32 boards. This ticker displays the price 
  - STEP 4: Mở device manager và kiểm tra xem port ở vị trí nào (bằng cách ấn chuột phải vào nút WINDOWN sau đó chọn divice manager).
  
  - STEP 5: Sau đó tải đoạn code của tôi về, mở file crypto_price_tickers.ino bằng Arduino IDE sau đó ấn vào tool chọn board esp32 (theo đúng loại esp32 bạn có) rồi chọn port chính là số port vừa tìm thấy tại device manager bước trên
+![image](https://github.com/user-attachments/assets/8a6d7973-965d-4585-bedd-feac6ca38df8)
+
  - STEP 6: Ấn upload để tải lên đoạn code => như vậy là đã hoàn thành chương trình đã có thể chạy
 # Support You
 Whatever you need; questions answered, requests, bugs; make an Issue. I'll get to them as soon as I can.
