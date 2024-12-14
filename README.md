@@ -31,7 +31,7 @@ Sản phẩm được hướng dẫn chi tiết cách làm ở phía bên dướ
  - ArduinoJson (Được sử dụng để xử lý dữ liệu JSON được truy xuất từ ​​Coingecko)
  - Wifi Manager for Esp32
 
-# Usage:
+# Built:
  - Bước 1: Lắp các thiết bị phần cứng theo sơ đồ diagram ở bên trên
  - Bước 2: Kết nối ESP32 vào máy tính của bạn qua 1 chiếc cáp sạc
  - Bước 3: Tải và cài đặt drive tương ứng với ESP32 của bạn (có thể là CP210x, CH340,...) trên trình duyệt
@@ -59,5 +59,11 @@ Sản phẩm được hướng dẫn chi tiết cách làm ở phía bên dướ
 ![image](https://github.com/user-attachments/assets/8a6d7973-965d-4585-bedd-feac6ca38df8)
 
  - Bước 8: Ấn upload để tải lên đoạn code => như vậy là đã hoàn thành chương trình đã có thể chạy
+
+
+# Usage:
+- Sau khi upload xong bạn sử dụng thiết bị của mình để kết nối với wifi do esp32 phát ra
+- Sau khi đã kết nối (sẽ ko có mạng), bạn vào trang 192.168.4.1 để điền wifi cho thiết bị. Ấn save và thiết bị đã có thể chạy bình thường.
+  
 # Support You
 Bất cứ điều gì bạn cần; câu hỏi được trả lời, yêu cầu, lỗi; gặp phải một vấn đề. Liên lạc với tôi và tôi sẽ hỗ trợ ngay khi có thể.
