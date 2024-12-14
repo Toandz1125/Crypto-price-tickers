@@ -23,7 +23,7 @@ Sản phẩm được hướng dẫn chi tiết cách làm ở phía bên dướ
  - Volume xoay rotary
    
 # Wiring Diagram
-One thing to be aware of is that there are two different versions of these displays available on the internet, one which has the GND and VCC pins the opposite way around. Make sure you check the polarity before supplying power to the display or you might damage it.
+Một điều cần lưu ý là có hai phiên bản khác nhau của những màn hình này có sẵn trên internet, một phiên bản có các chân GND và VCC ngược lại. Đảm bảo bạn kiểm tra cực trước khi cấp nguồn cho màn hình, nếu không bạn có thể làm hỏng màn hình.
 
 ![image](https://github.com/user-attachments/assets/4b20a8dd-c46c-48e2-bfa2-429b2fef8cb2)
 
