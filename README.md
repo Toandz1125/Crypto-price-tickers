@@ -3,6 +3,7 @@
 ## Introduction
 
 Here is my source code for this project. With my code:
+<p>
 Bitcoin Ticker is Arduino code for ESP32 boards. This ticker displays the price of Bitcoin/USD, Ethereum/USD,... and idicates whether the crypto currency went up or down. The price data comes from the Coingecko API.
 
 # Requirements
