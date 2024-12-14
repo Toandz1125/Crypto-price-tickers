@@ -29,7 +29,7 @@ Một điều cần lưu ý là có hai phiên bản khác nhau của những m�
  
 ![image](https://github.com/user-attachments/assets/4b20a8dd-c46c-48e2-bfa2-429b2fef8cb2)
  
- Phiên bản chạy đầy đủ
+ Phiên bản chạy đầy đủ (chân tx2 là chân số 17 trong esp32-wroom)
  
 ![image](https://github.com/user-attachments/assets/58954fd3-b5ab-4cd5-8202-2605daa2fff3)
 
