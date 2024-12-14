@@ -9,7 +9,7 @@ Cùng với giá, nó hiển thị phần trăm thay đổi so với giá đóng
 <p>
 Hỗ trợ sự thuận tiện của người dùng bằng cách sử dụng sleep mode giảm tiêu thụ pin, có thể config để lựa chọn được wifi và loại coin hiển thị mà ko cần can thiệp lại đoạn code.
 <p>
-Sản phẩm được hướng dẫn chi tiết cách làm ở phía bên dưới
+Sản phẩm được hướng dẫn chi tiết cách làm và cách sử dụng ở phía bên dưới
  
 # Requirements
 ## Hardware
