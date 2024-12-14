@@ -59,4 +59,4 @@ Bitcoin Ticker là mã Arduino cho bo mạch ESP32. Mã này hiển thị giá B
 
  - Bước 8: Ấn upload để tải lên đoạn code => như vậy là đã hoàn thành chương trình đã có thể chạy
 # Support You
-Bất cứ điều gì bạn cần; câu hỏi được trả lời, yêu cầu, lỗi; gặp phải một vấn đề. Tôi sẽ hỗ trợ ngay khi có thể.
+Bất cứ điều gì bạn cần; câu hỏi được trả lời, yêu cầu, lỗi; gặp phải một vấn đề. Liên lạc với tôi và tôi sẽ hỗ trợ ngay khi có thể.
