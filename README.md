@@ -5,7 +5,7 @@
 Here is my source code for this project. With my code:
 
 # Requirements
-## Devices:
+## Hardware:
 
 ![Components-Required-768x432](https://github.com/user-attachments/assets/e9a152f1-a4ec-4885-b548-0d71d6c21139)
 
@@ -29,6 +29,16 @@ Here is my source code for this project. With my code:
  - ArduinoJson (Used to process JSON data retreived from CoinMarketCap)
  - Wifi Manager for Esp32
 
-# Usage
+# Usage:
+ - STEP 1: Lắp các thiết bị phần cứng theo sơ đồ dỉagram ở bên trên
+ - STEP 1: Kết nối ESP32 vào máy tính của bạn qua 1 chiếc cáp sạc
+ - STEP 2: Cài đặt drive tương ứng với ESP32 của bạn (có thể là CP210x, CH340,...)
+ - STEP 3: Cài đặt Arduino IDE from website https://www.arduino.cc/en/software, sau đó cài đặt Board ESP32 từ BOARD MANAGER. Xong rồi cài thêm các thư viện được liệt kê bên trên từ LIBRARY MANAGER
+   
+![image](https://github.com/user-attachments/assets/15a506d2-a7bf-41f9-990d-bb82d9b5d6ce)
+![image](https://github.com/user-attachments/assets/f61d31a9-ab18-4601-a67f-a017a1f02ea9)
+
+ - STEP 4: Sau đó tải đoạn code của tôi về, mở file 
+ - STEP 4: Mở divice manager và kiểm tra xem port ở vị trí nào (bằng cách ấn chuột phải vào nút WINDOWN sau đó chọn divice manager). Nếu 
 # Support You
 Whatever you need; questions answered, requests, bugs; make an Issue. I'll get to them as soon as I can.
