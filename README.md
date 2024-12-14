@@ -5,7 +5,9 @@
 <p>
 Crypto Tickers là mã Arduino cho bo mạch ESP32. Mã này hiển thị giá Bitcoin/USD, Ethereum/USD,vv...  bạn có thể thiết lập nó để hiển thị bất kỳ loại tiền điện tử nào hoặc thậm chí nhiều loại tiền điện tử bằng bất kỳ loại tiền địa phương nào, miễn là có sẵn API cho nó trên một trong các sàn giao dịch. Mã này dữ liệu giá đến từ API Coingecko. 
 <p>
-Cùng với giá, nó hiển thị phần trăm thay đổi so với giá đóng cửa ngày hôm qua. Nó cũng sáng đèn LED màu đỏ hoặc xanh lục bên dưới màn hình tùy thuộc vào việc giá tăng hay giảm. Hỗ trợ sự thuận tiện của người dùng bằng cách sử dụng sleep mode giảm tiêu thụ pin, có thể config để lựa chọn được wifi và loại coin mà ko cần can thiệp lại đoạn code.
+Cùng với giá, nó hiển thị phần trăm thay đổi so với giá đóng cửa ngày hôm qua. Nó cũng sáng đèn LED màu đỏ hoặc xanh lục bên dưới màn hình tùy thuộc vào việc giá tăng hay giảm. 
+<p>
+Hỗ trợ sự thuận tiện của người dùng bằng cách sử dụng sleep mode giảm tiêu thụ pin, có thể config để lựa chọn được wifi và loại coin hiển thị mà ko cần can thiệp lại đoạn code.
 <p>
 Sản phẩm được hướng dẫn chi tiết cách làm ở phía bên dưới
  
