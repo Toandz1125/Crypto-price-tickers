@@ -34,7 +34,7 @@ Bitcoin Ticker là mã Arduino cho bo mạch ESP32. Mã này hiển thị giá B
  - Bước 1: Lắp các thiết bị phần cứng theo sơ đồ diagram ở bên trên
  - Bước 2: Kết nối ESP32 vào máy tính của bạn qua 1 chiếc cáp sạc
  - Bước 3: Tải và cài đặt drive tương ứng với ESP32 của bạn (có thể là CP210x, CH340,...) trên trình duyệt
- - Bước 3: Cài đặt Arduino IDE from website https://www.arduino.cc/en/software, sau đó vào file chọn preferences rồi nhập vào đường dẫn này https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json (phải làm bước này bên dưới mới tìm được Board để cài đặt)
+ - Bước 4: Cài đặt Arduino IDE from website https://www.arduino.cc/en/software, sau đó vào file chọn preferences rồi nhập vào đường dẫn này https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json (phải làm bước này bên dưới mới tìm được Board để cài đặt)
    
  ![image](https://github.com/user-attachments/assets/a852d64a-83bf-484d-bc8f-e6a152f6a74f)
 
