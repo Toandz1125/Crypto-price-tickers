@@ -53,7 +53,3 @@ Bitcoin Ticker is Arduino code for ESP32 boards. This ticker displays the price 
 # Support You
 Whatever you need; questions answered, requests, bugs; make an Issue. I'll get to them as soon as I can.
 
-
-# Screenshots
-
-![z6130107026784_4dcfb6528ff6170d3a9a055d465138ad](https://github.com/user-attachments/assets/6cec0fb6-0b0e-4ebc-ba9d-65f981e8a87c)
