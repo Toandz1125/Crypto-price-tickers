@@ -38,7 +38,10 @@ Here is my source code for this project. With my code:
 ![image](https://github.com/user-attachments/assets/15a506d2-a7bf-41f9-990d-bb82d9b5d6ce)
 ![image](https://github.com/user-attachments/assets/f61d31a9-ab18-4601-a67f-a017a1f02ea9)
 
- - STEP 4: Sau đó tải đoạn code của tôi về, mở file 
- - STEP 4: Mở divice manager và kiểm tra xem port ở vị trí nào (bằng cách ấn chuột phải vào nút WINDOWN sau đó chọn divice manager). Nếu 
+ - STEP 4: Mở device manager và kiểm tra xem port ở vị trí nào (bằng cách ấn chuột phải vào nút WINDOWN sau đó chọn divice manager).
+ 
+    Nếu không hiện số 
+ - STEP 4: Sau đó tải đoạn code của tôi về, mở file crypto_price_tickers.ino bằng Arduino IDE sau đó ấn vào tool chọn board esp32 (theo đúng loại esp32 bạn có) rồi chọn port chính là số port vừa tìm thấy tại device manager bước trên
+ - STEP 5: Ấn upload để tải lên đoạn code => như vậy là đã hoàn thành chương trình đã có thể chạy
 # Support You
 Whatever you need; questions answered, requests, bugs; make an Issue. I'll get to them as soon as I can.
