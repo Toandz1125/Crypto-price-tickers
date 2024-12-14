@@ -48,10 +48,11 @@ Bitcoin Ticker là mã Arduino cho bo mạch ESP32. Mã này hiển thị giá B
 ![image](https://github.com/user-attachments/assets/16bb1a21-76b5-4b7a-808a-fdfcf717da3f)
 
 * Nếu máy của bạn ko có phần này. Đừng lo, hãy làm theo các bước sau:
-  Đầu tiên ấn chọn Action phía bên trên, chọn Add legacy hardware, sau đó chọn
+  Đầu tiên ấn chọn Action phía bên trên, chọn Add legacy hardware, sau đó ấn next rồi chọn như hình
+  
 ![z6086642447049_2d7148e1e05d665a40cd6d20a52d58f6](https://github.com/user-attachments/assets/ce68aace-ab84-4f14-b087-f42900f6e412)
 
- Tiếp theo kéo xuống dưới sẽ có phần port sau đó ấn chọn vào đó rồi ấn next => đã xuất hiện phần port (sau bước này bạn có thể khởi động lại máy và rút cáp sạc ra cắm lại esp32 để nó có thể nhận drive)
+ Tiếp theo kéo xuống dưới sẽ có phần port, ấn chọn vào đó rồi ấn next => đã xuất hiện phần port (sau bước này bạn có thể khởi động lại máy và rút cáp sạc ra cắm lại esp32 để nó có thể hiện phần port và nhận drive)
 ![z6086645402105_d22b40e974d916db1d19b3a85f11c8ab](https://github.com/user-attachments/assets/1905a51c-357e-497d-a632-64a1269b64d2)
 
  - Bước 7: Sau đó tải đoạn code của tôi về, mở file crypto_price_tickers.ino bằng Arduino IDE sau đó ấn vào tool chọn board esp32 (theo đúng loại esp32 bạn có) rồi chọn port chính là số port vừa tìm thấy tại device manager bước trên
