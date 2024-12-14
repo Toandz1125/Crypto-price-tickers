@@ -32,7 +32,7 @@ Bitcoin Ticker is Arduino code for ESP32 boards. This ticker displays the price 
  - Wifi Manager for Esp32
 
 # Usage:
- - STEP 1: Lắp các thiết bị phần cứng theo sơ đồ dỉagram ở bên trên
+ - STEP 1: Lắp các thiết bị phần cứng theo sơ đồ diagram ở bên trên
  - STEP 1: Kết nối ESP32 vào máy tính của bạn qua 1 chiếc cáp sạc
  - STEP 2: Cài đặt drive tương ứng với ESP32 của bạn (có thể là CP210x, CH340,...)
  - STEP 3: Cài đặt Arduino IDE from website https://www.arduino.cc/en/software, sau đó cài đặt Board ESP32 từ BOARD MANAGER. Xong rồi cài thêm các thư viện được liệt kê bên trên từ LIBRARY MANAGER
