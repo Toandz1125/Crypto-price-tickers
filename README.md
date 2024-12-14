@@ -24,8 +24,14 @@ Sản phẩm được hướng dẫn chi tiết cách làm và cách sử dụng
    
 # Wiring Diagram
 Một điều cần lưu ý là có hai phiên bản khác nhau của những màn hình này có sẵn trên internet, một phiên bản có các chân GND và VCC ngược lại. Đảm bảo bạn kiểm tra cực trước khi cấp nguồn cho màn hình, nếu không bạn có thể làm hỏng màn hình.
-
+<p>
+ Phiên bản cơ bản để test chương trình chạy và test esp32 oled (ban đầu khuyến khích nên sử dụng cách lắp này)
+ 
 ![image](https://github.com/user-attachments/assets/4b20a8dd-c46c-48e2-bfa2-429b2fef8cb2)
+ 
+ Phiên bản chạy đầy đủ
+![image](https://github.com/user-attachments/assets/58954fd3-b5ab-4cd5-8202-2605daa2fff3)
+
 
 # Library
  - Adafruit_SSD1306 (Để hiển thị OLED)
