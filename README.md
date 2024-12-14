@@ -12,7 +12,7 @@ Hỗ trợ sự thuận tiện của người dùng bằng cách sử dụng sle
 Sản phẩm được hướng dẫn chi tiết cách làm ở phía bên dưới
  
 # Requirements
-## Hardware:
+## Hardware
 
 ![Components-Required-768x432](https://github.com/user-attachments/assets/e9a152f1-a4ec-4885-b548-0d71d6c21139)
 
@@ -27,7 +27,7 @@ Một điều cần lưu ý là có hai phiên bản khác nhau của những m�
 
 ![image](https://github.com/user-attachments/assets/4b20a8dd-c46c-48e2-bfa2-429b2fef8cb2)
 
-# Library:
+# Library
  - Adafruit_SSD1306 (Để hiển thị OLED)
  - WiFi (Cho WiFi trên bo mạch ESP32)
  - Wire
@@ -37,7 +37,7 @@ Một điều cần lưu ý là có hai phiên bản khác nhau của những m�
  - ArduinoJson (Được sử dụng để xử lý dữ liệu JSON được truy xuất từ ​​Coingecko)
  - Wifi Manager for Esp32
 
-# Built Guide:
+# Built Guide
  - Bước 1: Lắp các thiết bị phần cứng theo sơ đồ diagram ở bên trên
  - Bước 2: Kết nối ESP32 vào máy tính của bạn qua 1 chiếc cáp sạc
  - Bước 3: Tải và cài đặt drive tương ứng với ESP32 của bạn (có thể là CP210x, CH340,...) trên trình duyệt
@@ -67,7 +67,7 @@ Một điều cần lưu ý là có hai phiên bản khác nhau của những m�
  - Bước 8: Ấn upload để tải lên đoạn code => như vậy là đã hoàn thành chương trình đã có thể chạy
 
 
-# Usage:
+# Usage
 - Sau khi upload xong bạn sử dụng thiết bị của mình để kết nối với wifi do esp32 phát ra
 - Sau khi đã kết nối (sẽ ko có mạng), bạn vào trang 192.168.4.1 để điền wifi cho thiết bị. Ấn save và thiết bị đã có thể chạy bình thường.
   
