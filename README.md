@@ -4,7 +4,7 @@
 Đây là mã nguồn của tôi cho dự án này. Với mã của tôi:
 <p>
 Bitcoin Ticker là mã Arduino cho bo mạch ESP32. Mã này hiển thị giá Bitcoin/USD, Ethereum/USD,vv... và cho biết loại tiền điện tử này tăng hay giảm. Dữ liệu giá đến từ API Coingecko.
-Sản phẩm được hướng dẫn chi tiết cách sử làm ở bên dưới
+Sản phẩm được hướng dẫn chi tiết cách làm ở phía bên dưới
  
 # Requirements
 ## Hardware:
