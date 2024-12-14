@@ -37,7 +37,7 @@ Một điều cần lưu ý là có hai phiên bản khác nhau của những m�
  - ArduinoJson (Được sử dụng để xử lý dữ liệu JSON được truy xuất từ ​​Coingecko)
  - Wifi Manager for Esp32
 
-# Built Guide
+# Installation
  - Bước 1: Lắp các thiết bị phần cứng theo sơ đồ diagram ở bên trên
  - Bước 2: Kết nối ESP32 vào máy tính của bạn qua 1 chiếc cáp sạc
  - Bước 3: Tải và cài đặt drive tương ứng với ESP32 của bạn (có thể là CP210x, CH340,...) trên trình duyệt
