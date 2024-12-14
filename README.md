@@ -12,8 +12,8 @@ Sản phẩm được hướng dẫn chi tiết cách làm ở phía bên dướ
 ![Components-Required-768x432](https://github.com/user-attachments/assets/e9a152f1-a4ec-4885-b548-0d71d6c21139)
 
 
- - ESP32 - Wroom Development Board
- - Màn hình oled SSD1306 (I2C OLED Display)
+ - ESP32 - Wroom Bo mạch phát triển
+ - Màn hình oled SSD1306 (hiển thị OLED I2C)
  - 5mm Red & Green LEDs
  - Volume xoay rotary
    
