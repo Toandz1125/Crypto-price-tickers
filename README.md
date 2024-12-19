@@ -26,7 +26,7 @@ Sản phẩm được hướng dẫn chi tiết cách làm và cách sử dụng
  - 5mm Red & Green LEDs
  - Volume xoay rotary
    
-# Wiring Diagram
+## Wiring Diagram
 Một điều cần lưu ý là có hai phiên bản khác nhau của những màn hình này có sẵn trên internet, một phiên bản có các chân GND và VCC ngược lại. Đảm bảo bạn kiểm tra cực trước khi cấp nguồn cho màn hình, nếu không bạn có thể làm hỏng màn hình.
 <p>
  Phiên bản cơ bản để test chương trình chạy và test esp32 oled (ban đầu khuyến khích nên sử dụng cách lắp này)
@@ -38,7 +38,7 @@ Một điều cần lưu ý là có hai phiên bản khác nhau của những m�
 ![image](https://github.com/user-attachments/assets/58954fd3-b5ab-4cd5-8202-2605daa2fff3)
 
 
-# Library
+## Library
  - Adafruit_SSD1306 (Để hiển thị OLED)
  - WiFi (Cho WiFi trên bo mạch ESP32)
  - Wire
@@ -48,7 +48,7 @@ Một điều cần lưu ý là có hai phiên bản khác nhau của những m�
  - ArduinoJson (Được sử dụng để xử lý dữ liệu JSON được truy xuất từ ​​Coingecko)
  - Wifi Manager for Esp32
 
-# Installation:
+# Installation
  - Bước 1: Lắp các thiết bị phần cứng theo sơ đồ diagram ở bên trên
  - Bước 2: Kết nối ESP32 vào máy tính của bạn qua 1 chiếc cáp sạc
  - Bước 3: Tải và cài đặt drive tương ứng với ESP32 của bạn (có thể là CP210x, CH340,...) trên trình duyệt
